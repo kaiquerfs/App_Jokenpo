@@ -15,8 +15,8 @@ public class MainActivity extends Activity {
     }
     public void mudarImg(View view){
         ImageView vc = findViewById(R.id.vc);
-        ImageView pedra = findViewById(R.id.pedra);
 vc.setImageResource(R.drawable.pedra);
     }
+
 }
 
