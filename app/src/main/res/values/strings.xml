@@ -6,4 +6,7 @@
     <string name="text_ia">IA</string>
     <string name="resultado">Resultado</string>
     <string name="x">X</string>
+    <string name="ganhou">Ganhou</string>
+    <string name="perdeu">Perdeu</string>
+    <string name="empate">Empate</string>
 </resources>

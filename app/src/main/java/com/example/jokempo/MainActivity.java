@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -16,29 +17,49 @@ public class MainActivity extends Activity {
         setContentView(R.layout.layout);
     }
 
-    public int mudarPedra(View view) {
+    public void mudarpedra(View view) {
+        this.jogadaVc("pedra");
         ImageView vc = findViewById(R.id.vc);
         vc.setImageResource(R.drawable.pedra);
-        sortear();
-        return 0;
     }
 
-    public int sortear() {
-        Random ran = new Random();
-        int jogada = ran.nextInt(3);
+    public void mudarpapel(View view) {
+        this.jogadaVc("papel");
+        ImageView vc = findViewById(R.id.vc);
+        vc.setImageResource(R.drawable.papel);
+    }
+
+    public void mudartesoura(View view) {
+        this.jogadaVc("tesoura");
+        ImageView vc = findViewById(R.id.vc);
+        vc.setImageResource(R.drawable.tesoura);
+    }
+
+    public void jogadaVc(String jogadaVc) {
         ImageView ia = findViewById(R.id.ia);
-        switch (jogada) {
-            case 0:
+        int sorteio = new Random().nextInt(3);
+        String[] opcoes = {"pedra", "papel", "tesoura"};
+        String jogadaIA = opcoes[sorteio];
+
+        switch (jogadaIA) {
+            case "pedra":
                 ia.setImageResource(R.drawable.pedra);
                 break;
-            case 1:
+            case "papel":
                 ia.setImageResource(R.drawable.papel);
                 break;
-            case 2:
+            case "tesoura":
                 ia.setImageResource(R.drawable.tesoura);
                 break;
         }
-        return jogada;
+        TextView resultado = findViewById(R.id.resultado);
+        if ((jogadaIA == "tesoura" && jogadaVc == "papel") || (jogadaIA == "papel" && jogadaVc == "pedra") || (jogadaIA == "pedra" && jogadaVc == "tesoura")) {
+            resultado.setText(R.string.perdeu);
+        } else if ((jogadaVc == "tesoura" && jogadaIA == "papel") || (jogadaVc == "papel" && jogadaIA == "pedra") || (jogadaVc == "pedra" && jogadaIA == "tesoura")) {
+            resultado.setText(R.string.ganhou);
+        } else {
+            resultado.setText(R.string.empate);
+        }
     }
 }
 
